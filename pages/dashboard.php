@@ -21,7 +21,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
-        <a href="dashboard.php5" class="logo">
+        <a href="dashboard.php" class="logo">
             <span class="logo-mini"><b>D</b>M</span>
             <span class="logo-lg"><b>Data</b>Mining</span>
         </a>
@@ -41,7 +41,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <form action="../controller/logout.php5" method="get">
+                                    <form action="../controller/logout.php" method="get">
                                         <input type="submit" class="btn btn-default btn-flat" value="Sign out">
                                     </form>
                                 </div>

@@ -1,5 +1,5 @@
 <?php
-    include 'connection.php5';
+    include 'connection.php';
 
     $nip = $_POST['nip'];
     $password = $_POST['password'];
@@ -12,7 +12,7 @@
         $_SESSION['username'] = $nip;
         $_SESSION['name'] = $login[1];
         $_SESSION['status'] = "login";
-        header("location:../pages/dashboard.php5");
+        header("location:../pages/dashboard.php");
     }else{
         header("location:../index.php");
     }
