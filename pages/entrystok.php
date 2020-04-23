@@ -70,6 +70,11 @@
     </aside>
 
     <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Fomulir Entry Stok Barang
+            </h1>
+        </section>
         <section class="content">
 
         </section>
