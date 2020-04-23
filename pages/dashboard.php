@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">TES</span>
+                            <span class="hidden-xs"><?php echo $_SESSION['username']; ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Footer-->

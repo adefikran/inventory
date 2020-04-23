@@ -18,10 +18,10 @@
         header("location:../pages/dashboard.php");
     } else {
         header("location:../index.php");
-        alert("NIP dan Password tidak valid");
-    }
 
-    function alert($msg) {
-        echo "<script type='text/javascript'>alert('$msg');</script>";
+        echo '<script language="javascript" type="text/javascript"> 
+                alert("NIP dan Password tidak valid");
+                window.location = "../index.php";
+        </script>';
     }
 ?>
