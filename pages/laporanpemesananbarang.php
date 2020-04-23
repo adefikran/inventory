@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs"><?php echo $_SESSION['username']; ?></span>
+                            <span class="hidden-xs"><?php echo $_GET['nip']; ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Footer-->
@@ -59,12 +59,12 @@
             <!--MENU SLIDER-->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN MENU</li>
-                <li><a href="entrystok.php"><i class="pull-right-container"></i>Fomulir Entry Stok Barang</a></li>
-                <li><a href="pemesananbarang.php"><i class="pull-right-container"></i>Formulir Pemesanan Barang</a></li>
-                <li><a href="pengantaranbarang.php"><i class="pull-right-container"></i>Formulir Pengantaran Barang</a></li>
-                <li><a href="laporanstokbarang.php"><i class="pull-right-container"></i>Laporan Stok Barang</a></li>
-                <li><a href="laporanpemesananbarang.php"><i class="pull-right-container"></i>Laporan Pemesanan Barang</a></li>
-                <li><a href="laporanpengirimanbarang.php"><i class="pull-right-container"></i>Laporan Pengiriman Barang</a></li>
+                <li><a href="entrystok.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Fomulir Entry Stok Barang</a></li>
+                <li><a href="pemesananbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Formulir Pemesanan Barang</a></li>
+                <li><a href="pengantaranbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Formulir Pengantaran Barang</a></li>
+                <li><a href="laporanstokbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Stok Barang</a></li>
+                <li><a href="laporanpemesananbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Pemesanan Barang</a></li>
+                <li><a href="laporanpengirimanbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Pengiriman Barang</a></li>
             </ul>
         </section>
     </aside>
