@@ -15,9 +15,8 @@
         $_SESSION['name'] = $row[1];
         $_SESSION['status'] = "login";
 
-        header("location:../pages/dashboard.php");
+        echo '<script>window.location = "../pages/dashboard.php";</script>';
     } else {
-//        header("location:../index.php");
         echo '<script>alert("NIP dan Password tidak valid")</script>';
         echo '<script>window.location = "../index.php";</script>';
     }
