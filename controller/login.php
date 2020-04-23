@@ -19,5 +19,6 @@
     } else {
 //        header("location:../index.php");
         echo '<script>alert("NIP dan Password tidak valid")</script>';
+        echo '<script>window.location = "../index.php";</script>';
     }
 ?>
