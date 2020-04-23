@@ -4,9 +4,11 @@
     $nip = $_POST['nip'];
     $password = $_POST['password'];
 
-    $login = pg_query("SELECT * FROM m_user WHERE nip = 'nip' AND password = '$password'");
+    $sql = "SELECT * FROM m_user WHERE nip = '$nip' AND password = '$password'";
+    $login = pg_query($sql);
     $cek = pg_numrows($login);
 
+    echo "<script>console.log('Result Login " . $sql . " = > $cek' );</script>";
     if($cek > 0){
         session_start();
         $_SESSION['username'] = $nip;

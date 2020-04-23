@@ -4,5 +4,5 @@
     $user = "qduzbatmrhpxym";
     $password = "7da9ed9d8e99236811f4f90337240dcc9c5f6bad6a622b9e4606f911b67f4b02";
     $db = pg_connect("host=$host port=5432 dbname=$dbName user=$user password=$password");
-    echo "Connection DB $dbName Success";
+    echo "<script>console.log('Connection DB " . $dbName . " Success' );</script>";
 ?>
