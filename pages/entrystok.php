@@ -76,7 +76,21 @@
             </h1>
         </section>
         <section class="content">
-
+            <form action="../controller/addproduct.php" method="POST">
+                <fieldset>
+                    <p>
+                        <label>Nama Barang : </label>
+                        <input type="text" id="name" name="name" placeholder="Nama Barang" />
+                    </p>
+                    <p>
+                        <label>Stok : </label>
+                        <input type="number" id="stock" name="stock" placeholder="Stok Barang" />
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Entry" />
+                    </p>
+                </fieldset>
+            </form>
         </section>
     </div>
 

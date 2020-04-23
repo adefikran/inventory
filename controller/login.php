@@ -20,4 +20,6 @@
         echo '<script>alert("NIP dan Password tidak valid")</script>';
         echo '<script>window.location = "../index.php";</script>';
     }
+
+    pg_close();
 ?>
