@@ -23,7 +23,7 @@
     <header class="main-header">
         <a href="dashboard.php" class="logo">
             <span class="logo-mini"><b>D</b>M</span>
-            <span class="logo-lg"><b>Data</b>Mining</span>
+            <span class="logo-lg"><b>Inventory</b>System</span>
         </a>
 
         <nav class="navbar navbar-static-top">

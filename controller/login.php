@@ -13,10 +13,16 @@
         $_SESSION['username'] = $nip;
         $_SESSION['name'] = $login[1];
         $_SESSION['status'] = "login";
-        echo "<script>alert('$login');</script>";
+
+        echo '<script language="javascript">';
+        echo 'alert("' . $login . '")';
+        echo '</script>';
+
         header("location:../pages/dashboard.php");
     }else{
-        echo '<script>alert("NIP dan Password tidak valid")</script>';
+        echo '<script language="javascript">';
+        echo 'alert("NIP dan Password tidak valid")';
+        echo '</script>';
         header("location:../index.php");
     }
 ?>
