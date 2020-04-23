@@ -17,10 +17,10 @@
 
         header("location:../pages/dashboard.php");
     } else {
+        header("location:../index.php");
+
         echo '<script language="javascript">';
         echo 'alert("NIP dan Password tidak valid")';
         echo '</script>';
-
-        header("location:../index.php");
     }
 ?>
