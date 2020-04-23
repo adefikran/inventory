@@ -5,7 +5,7 @@
     $password = $_POST['password'];
 
     $login = pg_query("SELECT * FROM m_user WHERE nip = 'nip' AND password = '$password'");
-    $cek = pg_num_rows($login);
+    $cek = pg_numrows($login);
 
     if($cek > 0){
         session_start();
