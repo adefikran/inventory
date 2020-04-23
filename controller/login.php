@@ -17,11 +17,7 @@
 
         header("location:../pages/dashboard.php");
     } else {
-        header("location:../index.php");
-
-        echo '<script language="javascript" type="text/javascript"> 
-                alert("NIP dan Password tidak valid");
-                window.location = "../index.php";
-        </script>';
+//        header("location:../index.php");
+        echo 'alertify.alert("NIP dan Password tidak valid")';
     }
 ?>
