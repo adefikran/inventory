@@ -18,6 +18,6 @@
         header("location:../pages/dashboard.php");
     } else {
 //        header("location:../index.php");
-        echo 'alertify.alert("NIP dan Password tidak valid")';
+        echo '<script>alert("NIP dan Password tidak valid")</script>';
     }
 ?>
