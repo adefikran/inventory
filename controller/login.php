@@ -8,14 +8,15 @@
     $login = pg_query($sql);
     $cek = pg_numrows($login);
 
-    echo "<script>console.log('Result Login " . $sql . " = > $cek' );</script>";
     if($cek > 0){
         session_start();
         $_SESSION['username'] = $nip;
         $_SESSION['name'] = $login[1];
         $_SESSION['status'] = "login";
+        echo "<script>alert('$login');</script>";
         header("location:../pages/dashboard.php");
     }else{
+        echo '<script>alert("NIP dan Password tidak valid")</script>';
         header("location:../index.php");
     }
 ?>
