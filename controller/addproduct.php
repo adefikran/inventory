@@ -7,7 +7,7 @@
 
     $update = $_GET['update'];
     if (!is_null($update)) {
-        $sql = "UPDATE m_barang set name = '$name', stock = $stock WHERE id = $update";
+        $sql = "UPDATE m_barang set name = '$name', stock = $stock, updated = now(), updatedby = '$nip' WHERE id = $update";
         $result = pg_query($sql);
 
         if ($result) {
