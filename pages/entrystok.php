@@ -37,6 +37,8 @@
             echo '<script>alert("Hapus Barang ' . $paramName. ' Gagal. Silahkan coba lagi.!")</script>';
             echo '<script>window.location = "../pages/entrystok.php?nip=' . $paramNip .'";</script>';
         }
+
+        pg_close();
     }
 ?>
 
@@ -97,7 +99,7 @@
             </h1>
         </section>
         <section class="content">
-            <form action="../controller/addproduct.php?nip=<?php echo $_GET['nip']; ?>" method="POST" onSubmit="return validasi()">
+            <form action="../controller/addproduct.php?nip=<?php echo $_GET['nip']; ?>&update=<?php echo $_GET['update']; ?>" method="POST" onSubmit="return validasi()">
                 <fieldset>
                     <legend></legend>
                     <p>
