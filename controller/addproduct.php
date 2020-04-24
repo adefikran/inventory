@@ -10,10 +10,10 @@
     $result = pg_query($sql);
 
     if ($result) {
-        echo '<script>alert("Entry Barang ' . $name. $result . ' Berhasil")</script>';
+        echo '<script>alert("Entry Barang ' . $name. ' Berhasil")</script>';
         echo '<script>window.location = "../pages/entrystok.php";</script>';
     } else {
-        echo '<script>alert("Entry Barang ' . $name. $result . ' Gagal. Silahkan coba lagi.!")</script>';
+        echo '<script>alert("Entry Barang ' . $name. ' Gagal. Silahkan coba lagi.!")</script>';
         echo '<script>window.location = "../pages/entrystok.php";</script>';
     }
 

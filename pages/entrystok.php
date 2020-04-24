@@ -19,6 +19,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
+<?php
+    $paramDelete = $_GET['delete'];
+    $paramNip = $_GET['nip'];
+    if (!is_null($paramDelete)) {
+        include '../controller/connection.php';
+
+        $sql = "DELETE FROM m_barang WHERE id = $paramDelete";
+        $result = pg_query($sql);
+
+        if ($result) {
+            echo '<script>alert("Hapus Barang ' . $name. ' Berhasil")</script>';
+            echo '<script>window.location = "../pages/entrystok.php?nip=' . $paramNip .'";</script>';
+        } else {
+            echo '<script>alert("Hapus Barang ' . $name. ' Gagal. Silahkan coba lagi.!")</script>';
+            echo '<script>window.location = "../pages/entrystok.php?nip=' . $paramNip .'";</script>';
+        }
+    }
+?>
+
 <div class="wrapper">
     <header class="main-header">
         <a href="dashboard.php" class="logo">
@@ -103,12 +123,13 @@
                                 <div class="box-body table-responsive no-padding">
                                     <table class="table table-hover">
                                         <tr>
-                                            <th align="center">Nama Barang</th>
-                                            <th align="center">Stok</th>
-                                            <th align="center">Tanggal Buat</th>
-                                            <th align="center">Pengentry</th>
-                                            <th align="center">Tanggal Update</th>
-                                            <th align="center">Pengupdate</th>
+                                            <th>Nama Barang</th>
+                                            <th>Stok</th>
+                                            <th>Tanggal Buat</th>
+                                            <th>Pengentry</th>
+                                            <th>Tanggal Update</th>
+                                            <th>Pengupdate</th>
+                                            <th>Action</th>
                                         </tr>
 
                                         <?php
@@ -118,17 +139,24 @@
                                         $result = pg_query($sql);
 
                                         while ($row = pg_fetch_row($result)) {
+                                            $entrySql = "SELECT * FROM m_user WHERE nip = '$row[4]'";
+                                            $entry = pg_query($entrySql);
+                                            $rowEntry = pg_fetch_row($entry);
+
                                             ?>
                                             <tr>
-                                                <td align="center"><?php echo $row[1]; ?></td>
-                                                <td align="center"><?php echo $row[2]; ?></td>
-                                                <td align="center"><?php echo $row[3]; ?></td>
-                                                <td align="center"><?php echo $row[4]; ?></td>
-                                                <td align="center"><?php echo $row[5]; ?></td>
-                                                <td align="center"><?php echo $row[6]; ?></td>
+                                                <td><?php echo $row[1]; ?></td>
+                                                <td><?php echo $row[2]; ?></td>
+                                                <td><?php echo $row[3]; ?></td>
+                                                <td><?php echo $rowEntry[1]; ?></td>
+                                                <td><?php echo $row[5]; ?></td>
+                                                <td><?php echo $row[6]; ?></td>
+                                                <td><a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>&update=<?php echo $row[0]; ?>">Perbaharui</a>&nbsp;&nbsp;<a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>&delete=<?php echo $row[0]; ?>">Hapus</a> </td>
                                             </tr>
                                             <?php
                                         }
+
+                                        pg_close();
                                         ?>
                                     </table>
                                 </div>
@@ -150,7 +178,18 @@
     <div class="control-sidebar-bg"></div>
 </div>
 
-
+<script type="text/javascript">
+    function validasi() {
+        var name = document.getElementById("name").value;
+        var stock = document.getElementById("stock").value;
+        if (name != "" && stock!="") {
+            return true;
+        }else{
+            alert('Nama Barang dan Stok harus di isi !');
+            return false;
+        }
+    }
+</script>
 
 <script src="../style/css/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../style/css/bower_components/jquery-ui/jquery-ui.min.js"></script>
