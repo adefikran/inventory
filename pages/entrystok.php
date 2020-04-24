@@ -76,7 +76,7 @@
             </h1>
         </section>
         <section class="content">
-            <form action="../controller/addproduct.php" method="POST">
+            <form action="../controller/addproduct.php?nip=<?php echo $_GET['nip']; ?>" method="POST">
                 <fieldset>
                     <legend></legend>
                     <p>
