@@ -112,7 +112,7 @@
                                         </tr>
 
                                         <?php
-                                        include 'connection.php';
+                                        include '../controller/connection.php';
 
                                         $sql = "SELECT * FROM m_barang";
                                         $result = pg_query($sql);
