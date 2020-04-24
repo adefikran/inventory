@@ -59,12 +59,12 @@
             <!--MENU SLIDER-->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN MENU</li>
-                <li><a href="entrystok.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Fomulir Entry Stok Barang</a></li>
-                <li><a href="pemesananbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Formulir Pemesanan Barang</a></li>
-                <li><a href="pengantaranbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Formulir Pengantaran Barang</a></li>
-                <li><a href="laporanstokbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Stok Barang</a></li>
-                <li><a href="laporanpemesananbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Pemesanan Barang</a></li>
-                <li><a href="laporanpengirimanbarang.php?<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Pengiriman Barang</a></li>
+                <li><a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Fomulir Entry Stok Barang</a></li>
+                <li><a href="pemesananbarang.php?nip=<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Formulir Pemesanan Barang</a></li>
+                <li><a href="pengantaranbarang.php?nip=<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Formulir Pengantaran Barang</a></li>
+                <li><a href="laporanstokbarang.php?nip=<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Stok Barang</a></li>
+                <li><a href="laporanpemesananbarang.php?nip=<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Pemesanan Barang</a></li>
+                <li><a href="laporanpengirimanbarang.php?nip=<?php echo $_GET['nip']; ?>"><i class="pull-right-container"></i>Laporan Pengiriman Barang</a></li>
             </ul>
         </section>
     </aside>
@@ -78,6 +78,7 @@
         <section class="content">
             <form action="../controller/addproduct.php" method="POST">
                 <fieldset>
+                    <legend></legend>
                     <p>
                         <label>Nama Barang : </label>
                         <input type="text" id="name" name="name" placeholder="Nama Barang" />
@@ -90,6 +91,51 @@
                         <input type="submit" name="submit" value="Entry" />
                     </p>
                 </fieldset>
+                <br>
+                <div ng-controller="listController">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Daftar Barang</h3>
+                                    <br/>
+                                </div>
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th align="center">Nama Barang</th>
+                                            <th align="center">Stok</th>
+                                            <th align="center">Tanggal Buat</th>
+                                            <th align="center">Pengentry</th>
+                                            <th align="center">Tanggal Update</th>
+                                            <th align="center">Pengupdate</th>
+                                        </tr>
+
+                                        <?php
+                                        include 'connection.php';
+
+                                        $sql = "SELECT * FROM m_barang";
+                                        $result = pg_query($sql);
+
+                                        while ($row = pg_fetch_row($result)) {
+                                            ?>
+                                            <tr>
+                                                <td align="center"><?php echo $row[1]; ?></td>
+                                                <td align="center"><?php echo $row[2]; ?></td>
+                                                <td align="center"><?php echo $row[3]; ?></td>
+                                                <td align="center"><?php echo $row[4]; ?></td>
+                                                <td align="center"><?php echo $row[5]; ?></td>
+                                                <td align="center"><?php echo $row[6]; ?></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </section>
     </div>
