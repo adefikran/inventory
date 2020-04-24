@@ -6,7 +6,7 @@
     $nip = $_GET['nip'];
 
     $update = $_GET['update'];
-    if (!is_null($update)) {
+    if (!empty($update) || $update != "") {
         $sql = "UPDATE m_barang set name = '$name', stock = $stock, updated = now(), updatedby = '$nip' WHERE id = $update";
         $result = pg_query($sql);
 
