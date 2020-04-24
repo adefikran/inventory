@@ -11,10 +11,10 @@
 
     if ($result) {
         echo '<script>alert("Entry Barang ' . $name. ' Berhasil")</script>';
-        echo '<script>window.location = "../pages/entrystok.php";</script>';
+        echo '<script>window.location = "../pages/entrystok.php?nip=' . $nip . '";</script>';
     } else {
         echo '<script>alert("Entry Barang ' . $name. ' Gagal. Silahkan coba lagi.!")</script>';
-        echo '<script>window.location = "../pages/entrystok.php";</script>';
+        echo '<script>window.location = "../pages/entrystok.php?nip=' . $nip . '";</script>';
     }
 
     pg_close();
