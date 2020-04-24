@@ -23,6 +23,7 @@
 <?php
     $paramDelete = $_GET['delete'];
     $paramNip = $_GET['nip'];
+    $paramName = $_GET['name'];
     if (!is_null($paramDelete)) {
         include '../controller/connection.php';
 
@@ -30,10 +31,10 @@
         $result = pg_query($sql);
 
         if ($result) {
-            echo '<script>alert("Hapus Barang ' . $name. ' Berhasil")</script>';
+            echo '<script>alert("Hapus Barang ' . $paramName. ' Berhasil")</script>';
             echo '<script>window.location = "../pages/entrystok.php?nip=' . $paramNip .'";</script>';
         } else {
-            echo '<script>alert("Hapus Barang ' . $name. ' Gagal. Silahkan coba lagi.!")</script>';
+            echo '<script>alert("Hapus Barang ' . $paramName. ' Gagal. Silahkan coba lagi.!")</script>';
             echo '<script>window.location = "../pages/entrystok.php?nip=' . $paramNip .'";</script>';
         }
     }
@@ -96,16 +97,16 @@
             </h1>
         </section>
         <section class="content">
-            <form action="../controller/addproduct.php?nip=<?php echo $_GET['nip']; ?>" method="POST">
+            <form action="../controller/addproduct.php?nip=<?php echo $_GET['nip']; ?>" method="POST" onSubmit="return validasi()">
                 <fieldset>
                     <legend></legend>
                     <p>
                         <label>Nama Barang : </label>
-                        <input type="text" id="name" name="name" placeholder="Nama Barang" />
+                        <input type="text" id="name" name="name" placeholder="Nama Barang" value="<?php echo $_GET['name']; ?>" />
                     </p>
                     <p>
                         <label>Stok : </label>
-                        <input type="number" id="stock" name="stock" placeholder="Stok Barang" />
+                        <input type="number" id="stock" name="stock" placeholder="Stok Barang" value="<?php echo $_GET['stock']; ?>" />
                     </p>
                     <p>
                         <input type="submit" name="submit" value="Entry" />
@@ -151,7 +152,11 @@
                                                 <td><?php echo $rowEntry[1]; ?></td>
                                                 <td><?php echo $row[5]; ?></td>
                                                 <td><?php echo $row[6]; ?></td>
-                                                <td><a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>&update=<?php echo $row[0]; ?>">Perbaharui</a>&nbsp;&nbsp;<a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>&delete=<?php echo $row[0]; ?>">Hapus</a> </td>
+                                                <td>
+                                                    <a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>&update=<?php echo $row[0]; ?>&name=<?php echo $row[1]; ?>&stock=<?php echo $row[2]; ?>">Perbaharui</a>
+                                                    &nbsp;&nbsp;
+                                                    <a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>&delete=<?php echo $row[0]; ?>&name=<?php echo $row[1]; ?>">Hapus</a>
+                                                </td>
                                             </tr>
                                             <?php
                                         }
