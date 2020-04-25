@@ -16,25 +16,28 @@
     <link rel="stylesheet" href="../style/css/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
 <?php
-    include '../controller/connection.php';
+    function fillBarang() {
+        include '../controller/connection.php';
 
-    $itemsId = array();
-    $itemsName = array();
+        $output = '';
+        $sql = "SELECT * FROM m_barang";
+        $result = pg_query($sql);
 
-    $sql = "SELECT * FROM m_barang";
-    $result = pg_query($sql);
+        while ($row = pg_fetch_row($result)) {
+            $output .= '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+        }
 
-    while ($row = pg_fetch_row($result)) {
-        array_push($itemsId, $row[0]);
-        array_push($itemsName, $row[1]);
+        pg_close();
+        return $output;
     }
-
-    pg_close();
 ?>
 
 <div class="wrapper">
@@ -95,24 +98,20 @@
         </section>
         <section class="content">
             <div class="form-group">
-                <form action="" method="POST" onSubmit="return validasi()" id="add_name">
-                    <table class="table table-bordered" id="dynamic_field">
-                        <tr>
-                            <td>
-                                <select name="name[]" id="name" class="form-control name-list">
-                                    <?php
-                                        for ($i = 0; $i < count($itemsId); $i++) {
-                                            ?>
-                                            <option value="<?php echo $itemsId[$i]; ?>"><?php $itemsName[$i]; ?></option>
-                                            <?php
-                                        }
-                                    ?>
-                                </select>
-                            </td>
-                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                        </tr>
-                    </table>
-                    <input type="button" name="submit" id="submit" value="Submit">
+                <form method="post" id="insert_form">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="item_table">
+                            <tr>
+                                <th>Nama Barang</th>
+                                <th>Quantity</th>
+                                <th><button type="button" name="add" class="btn btn-success btn-sm add"><span class="glyphicon glyphicon-plus"></span></button> </th>
+                            </tr>
+                        </table>
+                        <br />
+                        <div align="center">
+                            <input type="submit" name="submit" class="btn btn-info" value="Insert" />
+                        </div>
+                    </div>
                 </form>
             </div>
         </section>
@@ -130,32 +129,19 @@
 
 <script>
     $(document).ready(function () {
-        var i = 1;
-        $('#add').click(function () {
-            i++;
-            var phpText0 = "<?php for ($i = 0; $i < count($itemsId); $i++) {?>";
-            var phpText1 = "<?php echo $itemsId[$i]; ?>";
-            var phpText3 = "<?php $itemsName[$i]; ?>";
-            var phpText4 = "<?php}?>";
-//            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter Name" class="form-control name-list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            $('#dynamic_field').append('<tr id="row'+i+'"> <td> <select name="name[]" id="name" class="form-control name-list">'+phpText0+'"<option value="'+phpText1+'">'+phpText3+'"</option>"'+phpText4+'"</select></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td> </tr>');
+        $(document).on('click', '.add', function () {
+            var html = '';
+            html += '<tr>';
+            html += '<td><select name="item_name[]" class="form-control item_name"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
+            html += '<td><input type="text" name="item_quantity[]" class="form-control item_quantity" /></td>';
+            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
+            html += '</tr>';
+
+            $('#item_table').append(html);
         });
 
-        $(document).on('click', '.btn_remove', function () {
-            var button_id = $(this).attr("id");
-            $('#row'+button_id+'').remove();
-        });
-
-        $('#submit').click(function () {
-            $.ajax({
-                url:"../controller/name.php",
-                method:"POST",
-                data:$('#add_name').serialize(),
-                success:function (data) {
-                    alert(data);
-                    $('#add_name')[0].reset();
-                }
-            });
+        $(document).on('click', '.remove', function () {
+           $(this).closest('tr').remove();
         });
     });
 </script>
