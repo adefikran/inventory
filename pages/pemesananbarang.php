@@ -127,6 +127,7 @@
 
 <script>
     function add() {
+        alert("Begin");
         var html = '';
         html += '<tr>';
         html += '<td><select name="item_name[]" class="form-control item_name"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
@@ -134,6 +135,7 @@
         html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove" onclick="remove()"><span class="glyphicon glyphicon-minus"></span></button></td></tr>';
 
         $('#item_table').append(html);
+        alert("End")
     }
 
     function remove() {
