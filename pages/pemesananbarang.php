@@ -133,8 +133,12 @@
         var i = 1;
         $('#add').click(function () {
             i++;
+            var phpText0 = "<?php for ($i = 0; $i < count($itemsId); $i++) {?>";
+            var phpText1 = "<?php echo $itemsId[$i]; ?>";
+            var phpText3 = "<?php $itemsName[$i]; ?>";
+            var phpText4 = "<?php}?>";
 //            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter Name" class="form-control name-list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><select name="name[]" id="name" class="form-control name-list"><?php for ($i = 0; $i < count($itemsId); $i++) {?><option value="<?php echo $itemsId[$i]; ?>"><?php $itemsName[$i]; ?></option><?php}?></select> </td> <td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td> </tr>');
+            $('#dynamic_field').append('<tr id="row'+i+'"> <td> <select name="name[]" id="name" class="form-control name-list">'+phpText0+'"<option value="'+phpText1+'">'+phpText3+'"</option>"'+phpText4+'"</select></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td> </tr>');
         });
 
         $(document).on('click', '.btn_remove', function () {
