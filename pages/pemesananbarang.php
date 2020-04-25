@@ -19,6 +19,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
+<?php
+    include '../controller/connection.php';
+
+    $itemsId = array();
+    $itemsName = array();
+
+    $sql = "SELECT * FROM m_barang";
+    $result = pg_query($sql);
+
+    while ($row = pg_fetch_row($result)) {
+        array_push($itemsId, $row[0]);
+        array_push($itemsName, $row[1]);
+    }
+
+    pg_close();
+?>
+
 <div class="wrapper">
     <header class="main-header">
         <a href="dashboard.php" class="logo">
@@ -76,7 +94,27 @@
             </h1>
         </section>
         <section class="content">
-
+            <div class="form-group">
+                <form action="" method="POST" onSubmit="return validasi()" id="add_name">
+                    <table class="table table-bordered" id="dynamic_field">
+                        <tr>
+                            <td>
+                                <select name="name[]" id="name" class="form-control name-list">
+                                    <?php
+                                        for ($i = 0; $i < count($itemsId); $i++) {
+                                            ?>
+                                            <option value="<?php echo $itemsId[$i]; ?>"><?php $itemsName[$i]; ?></option>
+                                            <?php
+                                        }
+                                    ?>
+                                </select>
+                            </td>
+                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                        </tr>
+                    </table>
+                    <input type="button" name="submit" id="submit" value="Submit">
+                </form>
+            </div>
         </section>
     </div>
 
@@ -90,7 +128,33 @@
     <div class="control-sidebar-bg"></div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        var i = 1;
+        $('#add').click(function () {
+            i++;
+//            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter Name" class="form-control name-list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row'+i+'"><td><select name="name[]" id="name" class="form-control name-list"><?php for ($i = 0; $i < count($itemsId); $i++) {?><option value="<?php echo $itemsId[$i]; ?>"><?php $itemsName[$i]; ?></option><?php}?></select> </td> <td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td> </tr>');
+        });
 
+        $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
+        });
+
+        $('#submit').click(function () {
+            $.ajax({
+                url:"../controller/name.php",
+                method:"POST",
+                data:$('#add_name').serialize(),
+                success:function (data) {
+                    alert(data);
+                    $('#add_name')[0].reset();
+                }
+            });
+        });
+    });
+</script>
 
 <script src="../style/css/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../style/css/bower_components/jquery-ui/jquery-ui.min.js"></script>
