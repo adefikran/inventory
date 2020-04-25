@@ -90,30 +90,38 @@
         </section>
     </aside>
 
-    <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                Fomulir Pemesanan Barang
-            </h1>
-        </section>
-        <section class="content">
-            <form method="post" id="insert_form">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="item_table">
-                        <tr>
-                            <th>Nama Barang</th>
-                            <th>Quantity</th>
-                            <th><button type="button" name="add" class="btn btn-success btn-sm add" onclick="add()"><span class="glyphicon glyphicon-plus"></span></button> </th>
-                        </tr>
-                    </table>
-                    <br />
-                    <div align="center">
-                        <input type="submit" name="submit" class="btn btn-info" value="Insert" />
-                    </div>
+    <div class="container">
+        <h3 align="center">Fomulir Pemesanan Barang</h3>
+        <br />
+        <form method="post" id="insert_form">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="item_table">
+                    <tr>
+                        <th>Nama Barang</th>
+                        <th>Quantity</th>
+                        <th><button type="button" name="add" class="btn btn-success btn-sm add"><span class="glyphicon glyphicon-plus"></span></button> </th>
+                    </tr>
+                </table>
+                <br />
+                <div align="center">
+                    <input type="submit" name="submit" class="btn btn-info" value="Insert" />
                 </div>
-            </form>
-        </section>
+            </div>
+        </form>
     </div>
+
+<!--    <div class="content-wrapper">-->
+<!--        <section class="content-header">-->
+<!--            <h1>-->
+<!--                Fomulir Pemesanan Barang-->
+<!--            </h1>-->
+<!--        </section>-->
+<!--        <section class="content">-->
+<!--            <div class="form-group">-->
+<!--                -->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
 
     <aside class="control-sidebar control-sidebar-dark">
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -126,22 +134,6 @@
 </div>
 
 <script>
-    function add() {
-        alert("Begin");
-        var html = '';
-        html += '<tr>';
-        html += '<td><select name="item_name[]" class="form-control item_name"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
-        html += '<td><input type="text" name="item_quantity[]" class="form-control item_quantity" /></td>';
-        html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove" onclick="remove()"><span class="glyphicon glyphicon-minus"></span></button></td></tr>';
-
-        $('#item_table').append(html);
-        alert("End")
-    }
-
-    function remove() {
-        $(this).closest('tr').remove();
-    }
-
     $(document).ready(function () {
         $(document).on('click', '.add', function () {
             var html = '';
