@@ -9,7 +9,7 @@
         if ($result) {
             $sql = "SELECT * FROM t_transaction ORDER BY id DESC";
             $transaction = pg_query($sql);
-            $row = pg_fetch_row($login);
+            $row = pg_fetch_row($transaction);
 
             for ($count = 0; $count < count($_POST["item_category"]); $count++) {
                 $data = array(
