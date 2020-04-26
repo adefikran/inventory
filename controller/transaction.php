@@ -4,7 +4,7 @@
     if (isset($_POST["item_category"])) {
         $nip = $_GET['nip'];
         $sql = "INSERT INTO t_transaction (nip, created, updated, destination) VALUES ('$nip', now(), now(), '')";
-        $result = pg_query($query);
+        $result = pg_query($sql);
 
         if ($result) {
             $sql = "SELECT * FROM t_transaction ORDER BY id DESC";
