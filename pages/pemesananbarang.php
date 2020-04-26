@@ -104,7 +104,7 @@
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Quantity</th>
-                                <th><button type="button" name="add" class="btn btn-success btn-sm add" onclick="add()"><span class="glyphicon glyphicon-plus"></span></button> </th>
+                                <th><button type="button" name="add" class="btn btn-success btn-sm add" onclick="add"><span class="glyphicon glyphicon-plus"></span></button> </th>
                             </tr>
                         </table>
                         <br />
