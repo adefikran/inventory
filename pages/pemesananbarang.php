@@ -102,8 +102,8 @@
                         <table class="table table-bordered" id="item_table">
                             <thead>
                             <tr>
-                                <th>Enter Item Name</th>
-                                <th>Quantity</th>
+                                <th>Nama Barang</th>
+                                <th>Jumlah</th>
                                 <th><button type="button" name="add" class="btn btn-success btn-xs add"><span class="glyphicon glyphicon-plus"></span></button></th>
                             </tr>
                             </thead>
@@ -152,11 +152,11 @@
 </body>
 </html>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
 
         var count = 0;
 
-        $(document).on('click', '.add', function(){
+        $(document).on('click', '.add', function() {
             count++;
             var options = '<?php echo $output; ?>';
             var html = '';
@@ -167,28 +167,26 @@
             $('tbody').append(html);
         });
 
-        $(document).on('click', '.remove', function(){
+        $(document).on('click', '.remove', function() {
             $(this).closest('tr').remove();
         });
 
-        $('#insert_form').on('submit', function(event){
+        $('#insert_form').on('submit', function(event) {
             event.preventDefault();
             var error = '';
             $('.item_name').each(function(){
                 var count = 1;
-                if($(this).val() == '')
-                {
+                if($(this).val() == '') {
                     error += '<p>Enter Item name at '+count+' Row</p>';
                     return false;
                 }
                 count = count + 1;
             });
 
-            $('.item_category').each(function(){
+            $('.item_category').each(function() {
                 var count = 1;
 
-                if($(this).val() == '')
-                {
+                if($(this).val() == '') {
                     error += '<p>Select Item Category at '+count+' row</p>';
                     return false;
                 }
@@ -199,24 +197,19 @@
 
             var form_data = $(this).serialize();
 
-            if(error == '')
-            {
+            if(error == '') {
                 $.ajax({
                     url:"../controller/transaction.php",
                     method:"POST",
                     data:form_data,
-                    success:function(data)
-                    {
-                        if(data == 'ok')
-                        {
+                    success:function(data) {
+                        if(data == 'ok') {
                             $('#item_table').find('tr:gt(0)').remove();
                             $('#error').html('<div class="alert alert-success">Item Details Saved</div>');
                         }
                     }
                 });
-            }
-            else
-            {
+            } else {
                 $('#error').html('<div class="alert alert-danger">'+error+'</div>');
             }
 
