@@ -49,8 +49,6 @@ function fill_unit_select_box($connect)
         </div>
     </form>
 </div>
-</body>
-</html>
 
 <script>
     $(document).ready(function(){
@@ -126,3 +124,5 @@ function fill_unit_select_box($connect)
 
     });
 </script>
+</body>
+</html>
