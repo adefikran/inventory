@@ -20,7 +20,8 @@
                 $result = pg_query($query);
             }
 
-            echo 'ok';
+            echo '<script>alert("PPesanan Berhasil di tambah")</script>';
+            echo '<script>window.location = "../pages/pemesananbarang.php?nip=' . $nip . '";</script>';
         }
     }
 ?>
