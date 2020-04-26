@@ -25,20 +25,17 @@
 <body class="hold-transition skin-blue sidebar-mini">
 
 <?php
-    function fillBarang() {
-        include '../controller/connection.php';
+    include '../controller/connection.php';
 
-        $output = '';
-        $sql = "SELECT * FROM m_barang";
-        $result = pg_query($sql);
+    $output = '';
+    $sql = "SELECT * FROM m_barang";
+    $result = pg_query($sql);
 
-        while ($row = pg_fetch_row($result)) {
-            $output .= '<option value="' . $row[0] . '">' . $row[1] . '</option>';
-        }
-
-        pg_close();
-        return $output;
+    while ($row = pg_fetch_row($result)) {
+        $output .= '<option value="' . $row[0] . '">' . $row[1] . '</option>';
     }
+
+    pg_close();
 ?>
 
 <div class="wrapper">
@@ -162,7 +159,7 @@
 
         $(document).on('click', '.add', function(){
             count++;
-            var options = '<?php echo fillBarang(); ?>';
+            var options = '<?php echo $output; ?>';
             var html = '';
             html += '<tr>';
             html += '<td><input type="text" name="item_name[]" class="form-control item_name" /></td>';
