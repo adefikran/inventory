@@ -21,6 +21,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.add', function () {
+                var html = '';
+                html += '<tr>';
+                html += '<td><select name="item_name[]" class="form-control item_name"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
+                html += '<td><input type="text" name="item_quantity[]" class="form-control item_quantity" /></td>';
+                html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
+                html += '</tr>';
+
+                $('#item_table').append(html);
+            });
+
+            $(document).on('click', '.remove', function () {
+                $(this).closest('tr').remove();
+            });
+        });
+    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -40,25 +58,6 @@
         return $output;
     }
 ?>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(document).on('click', '.add', function () {
-            var html = '';
-            html += '<tr>';
-            html += '<td><select name="item_name[]" class="form-control item_name"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
-            html += '<td><input type="text" name="item_quantity[]" class="form-control item_quantity" /></td>';
-            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
-            html += '</tr>';
-
-            $('#item_table').append(html);
-        });
-
-        $(document).on('click', '.remove', function () {
-            $(this).closest('tr').remove();
-        });
-    });
-</script>
 
 <div class="wrapper">
     <header class="main-header">
