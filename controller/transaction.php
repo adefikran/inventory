@@ -12,9 +12,9 @@
             $row = pg_fetch_row($transaction);
 
             for ($count = 0; $count < count($_POST["item_category"]); $count++) {
-                $itemCategory = $_POST["item_category"];
-                $itemQuantity = $_POST["item_quantity"];
-                $itemNote = $_POST["item_note"];
+                $itemCategory = $_POST["item_category"][$count];
+                $itemQuantity = $_POST["item_quantity"][$count];
+                $itemNote = $_POST["item_note"][$count];
 
                 $query = "INSERT INTO t_transaction_detail (transaction_id, barang_id, quantity, note) VALUES ($row[0], $itemCategory, $itemQuantity, '$itemNote')";
                 $result = pg_query($query);
