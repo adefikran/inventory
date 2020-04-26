@@ -103,8 +103,7 @@
                             <thead>
                             <tr>
                                 <th>Enter Item Name</th>
-                                <th>Category</th>
-                                <th>Sub Category</th>
+                                <th>Quantity</th>
                                 <th><button type="button" name="add" class="btn btn-success btn-xs add"><span class="glyphicon glyphicon-plus"></span></button></th>
                             </tr>
                             </thead>
@@ -162,31 +161,14 @@
             var options = '<?php echo $output; ?>';
             var html = '';
             html += '<tr>';
-            html += '<td><input type="text" name="item_name[]" class="form-control item_name" /></td>';
-            html += '<td><select name="item_category[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>"'+options+'"</select></td>';
-            html += '<td><select name="item_sub_category[]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></td>';
+            html += '<td><select name="item_category[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Pilih Barang</option>"'+options+'"</select></td>';
+            html += '<td><input type="number" name="item_quantity[]" class="form-control item_quantity" /></td>';
             html += '<td><button type="button" name="remove" class="btn btn-danger btn-xs remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
             $('tbody').append(html);
         });
 
         $(document).on('click', '.remove', function(){
             $(this).closest('tr').remove();
-        });
-
-        $(document).on('change', '.item_category', function(){
-            var category_id = $(this).val();
-            var sub_category_id = $(this).data('sub_category_id');
-            $.ajax({
-                url:"fill_sub_category.php",
-                method:"POST",
-                data:{category_id:category_id},
-                success:function(data)
-                {
-                    var html = '<option value="">Select Sub Category</option>';
-                    html += data;
-                    $('#item_sub_category'+sub_category_id).html(html);
-                }
-            })
         });
 
         $('#insert_form').on('submit', function(event){
@@ -215,26 +197,12 @@
 
             });
 
-            $('.item_sub_category').each(function(){
-
-                var count = 1;
-
-                if($(this).val() == '')
-                {
-                    error += '<p>Select Item Sub category '+count+' Row</p> ';
-                    return false;
-                }
-
-                count = count + 1;
-
-            });
-
             var form_data = $(this).serialize();
 
             if(error == '')
             {
                 $.ajax({
-                    url:"insert.php",
+                    url:"../controller/transaction.php",
                     method:"POST",
                     data:form_data,
                     success:function(data)
