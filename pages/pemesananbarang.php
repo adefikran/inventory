@@ -51,7 +51,7 @@
             html += '<tr>';
             html += '<td><select name="item_name[]" class="form-control item_name"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
             html += '<td><input type="text" name="item_quantity[]" class="form-control item_quantity" /></td>';
-            html += '<td><input type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></input></td>';
+            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
             html += '</tr>';
 
             $('#item_table').append(html);
