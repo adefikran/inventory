@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -21,24 +20,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <script>
-        $(document).ready(function () {
-            $(document).on('click', '.add', function () {
-                var html = '';
-                html += '<tr>';
-                html += '<td><select name="item_name[]" class="form-control item_name"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
-                html += '<td><input type="text" name="item_quantity[]" class="form-control item_quantity" /></td>';
-                html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
-                html += '</tr>';
-
-                $('#item_table').append(html);
-            });
-
-            $(document).on('click', '.remove', function () {
-                $(this).closest('tr').remove();
-            });
-        });
-    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -120,11 +101,14 @@
                 <form method="post" id="insert_form">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="item_table">
-                            <tr>
-                                <th>Nama Barang</th>
-                                <th>Quantity</th>
-                                <th><button type="button" name="add" class="btn btn-success btn-sm add"><span class="glyphicon glyphicon-plus"></span></button> </th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Nama Barang</th>
+                                    <th>Quantity</th>
+                                    <th><button type="button" name="add" class="btn btn-success btn-xs add"><span class="glyphicon glyphicon-plus"></span></button> </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
                         </table>
                         <br />
                         <div align="center">
@@ -145,6 +129,28 @@
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        var count = 0;
+
+        $(document).on('click', '.add', function () {
+            count++;
+            var html = '';
+            html += '<tr>';
+            html += '<td><select name="item_name[]" class="form-control item_name" data-sub_category_id="'+count+'"><option value="">Pilih Barang</option><?php echo fillBarang(); ?></select></td>';
+            html += '<td><input type="text" name="item_quantity[]" class="form-control item_quantity" /></td>';
+            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
+            html += '</tr>';
+
+            $('tbody').append(html);
+        });
+
+        $(document).on('click', '.remove', function () {
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
 
 <script src="../style/css/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../style/css/bower_components/jquery-ui/jquery-ui.min.js"></script>
