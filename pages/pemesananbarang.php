@@ -104,6 +104,7 @@
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Jumlah</th>
+                                <th>Catatan</th>
                                 <th><button type="button" name="add" class="btn btn-success btn-xs add"><span class="glyphicon glyphicon-plus"></span></button></th>
                             </tr>
                             </thead>
@@ -163,6 +164,7 @@
             html += '<tr>';
             html += '<td><select name="item_category[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Pilih Barang</option>"'+options+'"</select></td>';
             html += '<td><input type="number" name="item_quantity[]" class="form-control item_quantity" /></td>';
+            html += '<td><input type="text" name="item_note[]" class="form-control item_note" /></td>';
             html += '<td><button type="button" name="remove" class="btn btn-danger btn-xs remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
             $('tbody').append(html);
         });
@@ -184,15 +186,10 @@
             });
 
             $('.item_category').each(function() {
-                var count = 1;
-
                 if($(this).val() == '') {
                     alert("Pilih Barang dan isi Jumlah terlebih dahulu");
-//                    error += '<p>Select Item Category at '+count+' row</p>';
                     return false;
                 }
-
-                count = count + 1;
 
             });
 
