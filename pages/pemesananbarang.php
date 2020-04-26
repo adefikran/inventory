@@ -187,7 +187,8 @@
                 var count = 1;
 
                 if($(this).val() == '') {
-                    error += '<p>Select Item Category at '+count+' row</p>';
+                    alert("Pilih Barang dan isi Jumlah terlebih dahulu");
+//                    error += '<p>Select Item Category at '+count+' row</p>';
                     return false;
                 }
 
