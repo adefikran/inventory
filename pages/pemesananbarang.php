@@ -165,7 +165,7 @@
             var html = '';
             html += '<tr>';
             html += '<td><input type="text" name="item_name[]" class="form-control item_name" /></td>';
-            html += '<td><select name="item_category[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option><option value="2">Chemicals</option><option value="5">Electronics</option><option value="15">Food</option><option value="16">Textile</option></select></td>';
+            html += '<td><select name="item_category[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option></select></td>';
             html += '<td><select name="item_sub_category[]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></td>';
             html += '<td><button type="button" name="remove" class="btn btn-danger btn-xs remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
             $('tbody').append(html);
