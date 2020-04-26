@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -41,10 +42,6 @@
 ?>
 
 <script type="text/javascript">
-    function add() {
-        alert("SHOW");
-    }
-
     $(document).ready(function () {
         $(document).on('click', '.add', function () {
             var html = '';
@@ -127,7 +124,7 @@
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Quantity</th>
-                                <th><button type="button" name="add" class="btn btn-success btn-sm add" onclick="add();"><span class="glyphicon glyphicon-plus"></span></button> </th>
+                                <th><button type="button" name="add" class="btn btn-success btn-sm add"><span class="glyphicon glyphicon-plus"></span></button> </th>
                             </tr>
                         </table>
                         <br />
