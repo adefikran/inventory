@@ -90,38 +90,32 @@
         </section>
     </aside>
 
-    <div class="container">
-        <h3 align="center">Fomulir Pemesanan Barang</h3>
-        <br />
-        <form method="post" id="insert_form">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="item_table">
-                    <tr>
-                        <th>Nama Barang</th>
-                        <th>Quantity</th>
-                        <th><button type="button" name="add" class="btn btn-success btn-sm add"><span class="glyphicon glyphicon-plus"></span></button> </th>
-                    </tr>
-                </table>
-                <br />
-                <div align="center">
-                    <input type="submit" name="submit" class="btn btn-info" value="Insert" />
-                </div>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Fomulir Pemesanan Barang
+            </h1>
+        </section>
+        <section class="content">
+            <div class="form-group">
+                <form method="post" id="insert_form">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="item_table">
+                            <tr>
+                                <th>Nama Barang</th>
+                                <th>Quantity</th>
+                                <th><button type="button" name="add" class="btn btn-success btn-sm add" onclick="add()"><span class="glyphicon glyphicon-plus"></span></button> </th>
+                            </tr>
+                        </table>
+                        <br />
+                        <div align="center">
+                            <input type="submit" name="submit" class="btn btn-info" value="Insert" />
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </section>
     </div>
-
-<!--    <div class="content-wrapper">-->
-<!--        <section class="content-header">-->
-<!--            <h1>-->
-<!--                Fomulir Pemesanan Barang-->
-<!--            </h1>-->
-<!--        </section>-->
-<!--        <section class="content">-->
-<!--            <div class="form-group">-->
-<!--                -->
-<!--            </div>-->
-<!--        </section>-->
-<!--    </div>-->
 
     <aside class="control-sidebar control-sidebar-dark">
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -133,7 +127,11 @@
     <div class="control-sidebar-bg"></div>
 </div>
 
-<script>
+<script type="text/javascript">
+    function add() {
+        alert("SHOW");
+    }
+
     $(document).ready(function () {
         $(document).on('click', '.add', function () {
             var html = '';
