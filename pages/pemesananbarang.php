@@ -197,13 +197,13 @@
 
             if(error == '') {
                 $.ajax({
-                    url:"../controller/transaction.php",
+                    url:"../controller/transaction.php?nip=" + <?php echo $_GET['nip']; ?>,
                     method:"POST",
                     data:form_data,
                     success:function(data) {
                         if(data == 'ok') {
                             $('#item_table').find('tr:gt(0)').remove();
-                            $('#error').html('<div class="alert alert-success">Item Details Saved</div>');
+                            $('#error').html('<div class="alert alert-success">Pesanan Berhasil di tambah</div>');
                         }
                     }
                 });
