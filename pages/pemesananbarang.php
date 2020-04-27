@@ -96,7 +96,7 @@
         </section>
         <section class="content">
             <div class="form-group">
-                <form method="post" id="insert_form">
+                <form method="post" id="insert_form" action="../controller/transaction.php?nip=<?php echo $_GET['nip']; ?>">
                     <label for="deliver">Alamat Pengantaran</label>
                     <input type="text" name="deliver" id="deliver" class="form-control deliver" />
                     <br />
@@ -152,9 +152,9 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $rowEntry[0]; ?></td>
-                                            <td><?php echo $row[4]; ?></td>
                                             <td><?php echo $row[2]; ?></td>
                                             <td><?php echo $row[3]; ?></td>
+                                            <td><?php echo $row[4]; ?></td>
                                             <td>
                                                 <?php
                                                 $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";

@@ -23,6 +23,10 @@
 
             echo '<script>alert("Pesanan Berhasil di tambah")</script>';
             echo '<script>window.location = "../pages/pemesananbarang.php?nip=' . $nip . '";</script>';
+
+        } else {
+            echo '<script>alert("Pesanan Gagal di tambah")</script>';
+            echo '<script>window.location = "../pages/pemesananbarang.php?nip=' . $nip . '";</script>';
         }
     }
 ?>
