@@ -21,7 +21,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
-        <a href="dashboard.php" class="logo">
+        <a href="dashboard.php?nip=<?php echo $_GET['nip']; ?>" class="logo">
             <span class="logo-mini"><b>D</b>M</span>
             <span class="logo-lg"><b>Inventory</b>System</span>
         </a>

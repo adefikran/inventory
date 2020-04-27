@@ -3,7 +3,8 @@
 
     if (isset($_POST["item_category"])) {
         $nip = $_GET['nip'];
-        $sql = "INSERT INTO t_transaction (nip, created, updated, destination) VALUES ('$nip', now(), now(), '')";
+        $deliver = $_POST["deliver"];
+        $sql = "INSERT INTO t_transaction (nip, created, updated, destination) VALUES ('$nip', now(), now(), '$deliver')";
         $result = pg_query($sql);
 
         if ($result) {
@@ -20,7 +21,7 @@
                 $result = pg_query($query);
             }
 
-            echo '<script>alert("PPesanan Berhasil di tambah")</script>';
+            echo '<script>alert("Pesanan Berhasil di tambah")</script>';
             echo '<script>window.location = "../pages/pemesananbarang.php?nip=' . $nip . '";</script>';
         }
     }
