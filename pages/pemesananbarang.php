@@ -111,7 +111,7 @@
                                 <th><button type="button" name="add" class="btn btn-success btn-xs add"><span class="glyphicon glyphicon-plus"></span></button></th>
                             </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody id="dynamic_data"></tbody>
                         </table>
                         <div align="center">
                             <input type="submit" name="submit" class="btn btn-info" value="Insert" />
@@ -233,7 +233,7 @@
             html += '<td><input type="number" name="item_quantity[]" class="form-control item_quantity" /></td>';
             html += '<td><input type="text" name="item_note[]" class="form-control item_note" /></td>';
             html += '<td><button type="button" name="remove" class="btn btn-danger btn-xs remove"><span class="glyphicon glyphicon-minus"></span></button></td>';
-            $('tbody').append(html);
+            $('#dynamic_data').append(html);
         });
 
         $(document).on('click', '.remove', function() {
