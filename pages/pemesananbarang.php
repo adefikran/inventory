@@ -118,66 +118,66 @@
                         </div>
                     </div>
                 </form>
-                <br>
-                <div ng-controller="listController">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Daftar Pesanan</h3>
-                                    <br/>
-                                </div>
-                                <div class="box-body table-responsive no-padding">
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th>Penginput</th>
-                                            <th>Alamat Pengantaran</th>
-                                            <th>Tanggal Buat</th>
-                                            <th>Tanggal Update</th>
-                                            <th>Detail</th>
-                                        </tr>
+            </div>
+            <br>
+            <div ng-controller="listController">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Daftar Pesanan</h3>
+                                <br/>
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>Penginput</th>
+                                        <th>Alamat Pengantaran</th>
+                                        <th>Tanggal Buat</th>
+                                        <th>Tanggal Update</th>
+                                        <th>Detail</th>
+                                    </tr>
 
-                                        <?php
-                                        include '../controller/connection.php';
+                                    <?php
+                                    include '../controller/connection.php';
 
-                                        $sql = "SELECT * FROM t_transaction";
-                                        $result = pg_query($sql);
+                                    $sql = "SELECT * FROM t_transaction";
+                                    $result = pg_query($sql);
 
-                                        while ($row = pg_fetch_row($result)) {
-                                            $entrySql = "SELECT * FROM m_user WHERE nip = '$row[1]'";
-                                            $entry = pg_query($entrySql);
-                                            $rowEntry = pg_fetch_row($entry);
+                                    while ($row = pg_fetch_row($result)) {
+                                        $entrySql = "SELECT * FROM m_user WHERE nip = '$row[1]'";
+                                        $entry = pg_query($entrySql);
+                                        $rowEntry = pg_fetch_row($entry);
 
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $rowEntry[0]; ?></td>
-                                                <td><?php echo $row[4]; ?></td>
-                                                <td><?php echo $row[2]; ?></td>
-                                                <td><?php echo $row[3]; ?></td>
-                                                <td>
-                                                    <?php
-                                                        $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";
-                                                        $resultTransaction = pg_query($sqlTransaction);
-
-                                                        while ($rowTransaction = pg_fetch_row($resultTransaction)) {
-                                                            $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[2]";
-                                                            $resultBarang = pg_query($sqlBarang);
-                                                            $rowBarang = pg_fetch_row($resultBarang);
-
-                                                            ?>
-                                                            <label>-&nbsp;<?php echo $rowBarang[1]; ?>&nbsp;(Qty : <?php echo $rowTransaction[3]; ?>,&nbsp;Note : <?php echo $rowTransaction[4]; ?>)</label><br/>
-                                                            <?php
-                                                        }
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-
-                                        pg_close();
                                         ?>
-                                    </table>
-                                </div>
+                                        <tr>
+                                            <td><?php echo $rowEntry[0]; ?></td>
+                                            <td><?php echo $row[4]; ?></td>
+                                            <td><?php echo $row[2]; ?></td>
+                                            <td><?php echo $row[3]; ?></td>
+                                            <td>
+                                                <?php
+                                                $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";
+                                                $resultTransaction = pg_query($sqlTransaction);
+
+                                                while ($rowTransaction = pg_fetch_row($resultTransaction)) {
+                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[2]";
+                                                    $resultBarang = pg_query($sqlBarang);
+                                                    $rowBarang = pg_fetch_row($resultBarang);
+
+                                                    ?>
+                                                    <label>-&nbsp;<?php echo $rowBarang[1]; ?>&nbsp;(Qty : <?php echo $rowTransaction[3]; ?>,&nbsp;Note : <?php echo $rowTransaction[4]; ?>)</label><br/>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+
+                                    pg_close();
+                                    ?>
+                                </table>
                             </div>
                         </div>
                     </div>
