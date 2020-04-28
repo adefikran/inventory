@@ -96,7 +96,8 @@
         </section>
         <section class="content">
             <div class="form-group">
-                <form method="post" id="insert_form" action="../controller/transaction.php?nip=<?php echo $_GET['nip']; ?>" onSubmit="return validasi()">
+
+                <form action="../controller/transaction.php?nip=<?php echo $_GET['nip']; ?>" method="POST" onSubmit="return validasi()">
                     <label for="deliver">Alamat Pengantaran</label>
                     <input type="text" name="deliver" id="deliver" class="form-control deliver" />
                     <br />
@@ -257,46 +258,6 @@
         $(document).on('click', '.remove', function() {
             $(this).closest('tr').remove();
         });
-
-//        $('#insert_form').on('submit', function(event) {
-//            event.preventDefault();
-//            var error = '';
-//            $('.item_name').each(function(){
-//                var count = 1;
-//                if($(this).val() == '') {
-//                    error += '<p>Enter Item name at '+count+' Row</p>';
-//                    return false;
-//                }
-//                count = count + 1;
-//            });
-//
-//            $('.item_category').each(function() {
-//                if($(this).val() == '') {
-//                    alert("Pilih Barang dan isi Jumlah terlebih dahulu");
-//                    return false;
-//                }
-//
-//            });
-//
-//            var form_data = $(this).serialize();
-//
-//            if(error == '') {
-//                $.ajax({
-//                    url:"../controller/transaction.php?nip=" + <?php //echo $_GET['nip']; ?>//,
-//                    method:"POST",
-//                    data:form_data,
-//                    success:function(data) {
-//                        if(data == 'ok') {
-//                            $('#item_table').find('tr:gt(0)').remove();
-//                            $('#error').html('<div class="alert alert-success">Pesanan Berhasil di tambah</div>');
-//                        }
-//                    }
-//                });
-//            } else {
-//                $('#error').html('<div class="alert alert-danger">'+error+'</div>');
-//            }
-//
-//        });
 
     });
 </script>
