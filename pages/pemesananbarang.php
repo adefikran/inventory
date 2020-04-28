@@ -218,9 +218,7 @@
 <script src="../style/css/dist/js/adminlte.min.js"></script>
 <script src="../style/css/dist/js/pages/dashboard.js"></script>
 <script src="../style/css/dist/js/demo.js"></script>
-</body>
-</html>
-<script>
+<script type="text/javascript">
     function validasi() {
         $('.item_category').each(function() {
             if($(this).val() == '') {
@@ -238,7 +236,10 @@
 
         });
     }
-
+</script>
+</body>
+</html>
+<script>
     $(document).ready(function() {
 
         var count = 0;
