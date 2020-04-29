@@ -107,7 +107,7 @@
                                             <td><?php echo $rowEntry[0]; ?></td>
                                             <td>
                                                 <?php
-                                                if ($row[6] == 'PENDING') {
+                                                if ($row[5] == 'PENDING') {
                                                     ?>
                                                     <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&action=1&order=<?php echo $row[0]; ?>" method="post">
                                                         <label for="deliver_action">Action Pesanan</label>
@@ -132,23 +132,23 @@
                                                         <input type="submit" name="submit" value="OK" />
                                                     </form>
                                                     <?php
-                                                } else if ($row[6] == 'DELIVERY') {
+                                                } else if ($row[5] == 'DELIVERY') {
                                                     ?>
                                                     <a href="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&action=2&order=<?php echo $row[0]; ?>">Delivered</a>
                                                     <?php
-                                                } else if ($row[6] == 'DELIVERED'){
+                                                } else if ($row[5] == 'DELIVERED'){
                                                     ?>
                                                     <label>Pesanan Sudah Sampai</label>
                                                     <?php
-                                                } else if ($row[6] == 'REJECT'){
+                                                } else if ($row[5] == 'REJECT'){
                                                     ?>
                                                     <label>Pesanan Ditolak</label>
                                                     <?php
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row[5]; ?></td>
-                                            <td><?php echo $row[3]; ?></td>
+                                            <td><?php echo $row[4]; ?></td>
+                                            <td><?php echo $row[2]; ?></td>
                                             <td>
                                                 <?php
                                                 $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";
@@ -165,7 +165,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row[6]; ?></td>
+                                            <td><?php echo $row[5]; ?></td>
                                         </tr>
                                         <?php
                                     }

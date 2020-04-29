@@ -153,16 +153,16 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $rowEntry[0]; ?></td>
-                                            <td><?php echo $row[5]; ?></td>
-                                            <td><?php echo $row[3]; ?></td>
                                             <td><?php echo $row[4]; ?></td>
+                                            <td><?php echo $row[2]; ?></td>
+                                            <td><?php echo $row[3]; ?></td>
                                             <td>
                                                 <?php
                                                 $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";
                                                 $resultTransaction = pg_query($sqlTransaction);
 
                                                 while ($rowTransaction = pg_fetch_row($resultTransaction)) {
-                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[2]";
+                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[1]";
                                                     $resultBarang = pg_query($sqlBarang);
                                                     $rowBarang = pg_fetch_row($resultBarang);
 
@@ -172,7 +172,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row[6]; ?></td>
+                                            <td><?php echo $row[5]; ?></td>
                                         </tr>
                                         <?php
                                     }
