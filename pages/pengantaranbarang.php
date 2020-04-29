@@ -84,11 +84,11 @@
                                 <table class="table table-hover">
                                     <tr>
                                         <th>Penginput</th>
+                                        <th>Action</th>
                                         <th>Alamat Pengantaran</th>
                                         <th>Tanggal Buat</th>
                                         <th>Detail</th>
                                         <th>Status</th>
-                                        <th>Action Pesanan</th>
                                     </tr>
 
                                     <?php
@@ -105,25 +105,6 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $rowEntry[0]; ?></td>
-                                            <td><?php echo $row[5]; ?></td>
-                                            <td><?php echo $row[3]; ?></td>
-                                            <td>
-                                                <?php
-                                                $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";
-                                                $resultTransaction = pg_query($sqlTransaction);
-
-                                                while ($rowTransaction = pg_fetch_row($resultTransaction)) {
-                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[2]";
-                                                    $resultBarang = pg_query($sqlBarang);
-                                                    $rowBarang = pg_fetch_row($resultBarang);
-
-                                                    ?>
-                                                    <label>-&nbsp;<?php echo $rowBarang[1]; ?>&nbsp;(Qty : <?php echo $rowTransaction[3]; ?>,&nbsp;Note : <?php echo $rowTransaction[4]; ?>)</label><br/>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </td>
-                                            <td><?php echo $row[6]; ?></td>
                                             <td>
                                                 <?php
                                                 if ($row[6] == 'PENDING') {
@@ -164,8 +145,27 @@
                                                     <label>Pesanan Ditolak</label>
                                                     <?php
                                                 }
-                                                 ?>
+                                                ?>
                                             </td>
+                                            <td><?php echo $row[5]; ?></td>
+                                            <td><?php echo $row[3]; ?></td>
+                                            <td>
+                                                <?php
+                                                $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";
+                                                $resultTransaction = pg_query($sqlTransaction);
+
+                                                while ($rowTransaction = pg_fetch_row($resultTransaction)) {
+                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[2]";
+                                                    $resultBarang = pg_query($sqlBarang);
+                                                    $rowBarang = pg_fetch_row($resultBarang);
+
+                                                    ?>
+                                                    <label>-&nbsp;<?php echo $rowBarang[1]; ?>&nbsp;(Qty : <?php echo $rowTransaction[3]; ?>,&nbsp;Note : <?php echo $rowTransaction[4]; ?>)</label><br/>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?php echo $row[6]; ?></td>
                                         </tr>
                                         <?php
                                     }
