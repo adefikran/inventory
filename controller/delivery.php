@@ -13,7 +13,7 @@
         $resultUpdate = pg_query($sql);
 
         if ($resultUpdate) {
-            $sql = "INSERT INTO t_delivery (transaction_id, created, updated, status, deliver_id, note) VALUES ($order, now(), now(), '$deliveryAction', '$deliveryKurir' '')";
+            $sql = "INSERT INTO t_delivery (transaction_id, created, updated, status, deliver_id, note) VALUES ($order, now(), now(), '$deliveryAction', '$deliveryKurir', '')";
             $result = pg_query($sql);
 
             if ($result) {
