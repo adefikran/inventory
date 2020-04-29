@@ -126,7 +126,7 @@
                                             <td><?php echo $row[5]; ?></td>
                                             <td>
                                                 <?php
-                                                if ($row[5] == 'PENDING') {
+                                                if ($row[6] == 'PENDING') {
                                                     ?>
                                                     <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>" method="post">
                                                         <label for="deliver_action">Action</label>
