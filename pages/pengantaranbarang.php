@@ -151,15 +151,15 @@
                                                         <input type="submit" name="submit" value="OK" />
                                                     </form>
                                                     <?php
-                                                } else if ($row[5] == 'DELIVERY') {
+                                                } else if ($row[6] == 'DELIVERY') {
                                                     ?>
                                                     <a href="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&delivered=true">Delivered</a>
                                                     <?php
-                                                } else if ($row[5] == 'DELIVERED'){
+                                                } else if ($row[6] == 'DELIVERED'){
                                                     ?>
                                                     <label>Pesanan Sudah Sampai</label>
                                                     <?php
-                                                } else if ($row[5] == 'REJECT'){
+                                                } else if ($row[6] == 'REJECT'){
                                                     ?>
                                                     <label>Pesanan Ditolak</label>
                                                     <?php
