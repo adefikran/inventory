@@ -96,7 +96,6 @@
         </section>
         <section class="content">
             <div class="form-group">
-
                 <form action="../controller/transaction.php?nip=<?php echo $_GET['nip']; ?>" method="POST" onSubmit="return validasi()">
                     <label for="deliver">Alamat Pengantaran</label>
                     <input type="text" name="deliver" id="deliver" class="form-control deliver" />
@@ -137,6 +136,7 @@
                                         <th>Tanggal Buat</th>
                                         <th>Tanggal Update</th>
                                         <th>Detail</th>
+                                        <th>Status</th>
                                     </tr>
 
                                     <?php
@@ -172,6 +172,7 @@
                                                 }
                                                 ?>
                                             </td>
+                                            <td><?php echo $row[5]; ?></td>
                                         </tr>
                                         <?php
                                     }
@@ -222,18 +223,16 @@
     function validasi() {
         $('.item_category').each(function() {
             if($(this).val() == '') {
-                alert("Pilih Barang terlebih dahulu");
+                alert('Pilih Barang terlebih dahulu');
                 return false;
             }
-
         });
 
         $('.item_quantity').each(function() {
             if($(this).val() == '') {
-                alert("Jumlah masih kosong");
+                alert('Jumlah masih kosong');
                 return false;
             }
-
         });
     }
 </script>

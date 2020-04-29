@@ -13,7 +13,7 @@
 
         if ($pass) {
             $deliver = $_POST["deliver"];
-            $sql = "INSERT INTO t_transaction (nip, created, updated, destination) VALUES ('$nip', now(), now(), '$deliver')";
+            $sql = "INSERT INTO t_transaction (nip, created, updated, destination, status) VALUES ('$nip', now(), now(), '$deliver', 'PENDING')";
             $result = pg_query($sql);
 
             if ($result) {

@@ -76,7 +76,108 @@
             </h1>
         </section>
         <section class="content">
+            <div ng-controller="listController">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>Penginput</th>
+                                        <th>Alamat Pengantaran</th>
+                                        <th>Tanggal Buat</th>
+                                        <th>Detail</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
 
+                                    <?php
+                                    include '../controller/connection.php';
+
+                                    $sql = "SELECT * FROM t_transaction";
+                                    $result = pg_query($sql);
+
+                                    while ($row = pg_fetch_row($result)) {
+                                        $entrySql = "SELECT * FROM m_user WHERE nip = '$row[1]'";
+                                        $entry = pg_query($entrySql);
+                                        $rowEntry = pg_fetch_row($entry);
+
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $rowEntry[0]; ?></td>
+                                            <td><?php echo $row[5]; ?></td>
+                                            <td><?php echo $row[3]; ?></td>
+                                            <td>
+                                                <?php
+                                                $sqlTransaction = "SELECT * FROM t_transaction_detail where transaction_id = $row[0]";
+                                                $resultTransaction = pg_query($sqlTransaction);
+
+                                                while ($rowTransaction = pg_fetch_row($resultTransaction)) {
+                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[2]";
+                                                    $resultBarang = pg_query($sqlBarang);
+                                                    $rowBarang = pg_fetch_row($resultBarang);
+
+                                                    ?>
+                                                    <label>-&nbsp;<?php echo $rowBarang[1]; ?>&nbsp;(Qty : <?php echo $rowTransaction[3]; ?>,&nbsp;Note : <?php echo $rowTransaction[4]; ?>)</label><br/>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?php echo $row[5]; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($row[5] == 'PENDING') {
+                                                    ?>
+                                                    <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>" method="post">
+                                                        <label for="deliver_action">Action</label>
+                                                        <select name="deliver_action" id="deliver_action" class="form-control deliver_action">
+                                                            <option value="DELIVERY">Deliver</option>
+                                                            <option value="REJECT">Reject</option>
+                                                        </select>
+                                                        <label for="deliver_kurir">Kurir</label>
+                                                        <select name="deliver_kurir" id="deliver_action" class="form-control deliver_kurir">
+                                                            <?php
+                                                            $sqlDelivery = "SELECT * FROM m_deliver";
+                                                            $resultDelivery = pg_query($sqlDelivery);
+
+                                                            while ($rowDelivery = pg_fetch_row($resultDelivery)) {
+                                                                ?>
+                                                                <option value="<?php echo $rowDelivery[0]; ?>"><?php echo $rowDelivery[1]; ?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                        <br/>
+                                                        <input type="submit" name="submit" value="OK" />
+                                                    </form>
+                                                    <?php
+                                                } else if ($row[5] == 'DELIVERY') {
+                                                    ?>
+                                                    <a href="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&delivered=true">Delivered</a>
+                                                    <?php
+                                                } else if ($row[5] == 'DELIVERED'){
+                                                    ?>
+                                                    <label>Pesanan Sudah Sampai</label>
+                                                    <?php
+                                                } else if ($row[5] == 'REJECT'){
+                                                    ?>
+                                                    <label>Pesanan Ditolak</label>
+                                                    <?php
+                                                }
+                                                 ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+
+                                    pg_close();
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 
