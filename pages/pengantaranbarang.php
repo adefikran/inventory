@@ -109,14 +109,14 @@
                                                 <?php
                                                 if ($row[6] == 'PENDING') {
                                                     ?>
-                                                    <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>" method="post">
+                                                    <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&action=1&order=<?php echo $row[0]; ?>" method="post">
                                                         <label for="deliver_action">Action Pesanan</label>
-                                                        <select name="deliver_action" id="deliver_action" class="form-control deliver_action" style="width: 200px">
+                                                        <select name="deliver_action" id="deliver_action" class="form-control deliver_action" style="width: 120px">
                                                             <option value="DELIVERY">Deliver</option>
                                                             <option value="REJECT">Reject</option>
                                                         </select>
                                                         <label for="deliver_kurir">Nama Kurir</label>
-                                                        <select name="deliver_kurir" id="deliver_action" class="form-control deliver_kurir" style="width: 200px">
+                                                        <select name="deliver_kurir" id="deliver_action" class="form-control deliver_kurir" style="width: 120px">
                                                             <?php
                                                             $sqlDelivery = "SELECT * FROM m_deliver";
                                                             $resultDelivery = pg_query($sqlDelivery);
@@ -134,7 +134,7 @@
                                                     <?php
                                                 } else if ($row[6] == 'DELIVERY') {
                                                     ?>
-                                                    <a href="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&delivered=true">Delivered</a>
+                                                    <a href="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&action=2&order=<?php echo $row[0]; ?>">Delivered</a>
                                                     <?php
                                                 } else if ($row[6] == 'DELIVERED'){
                                                     ?>
