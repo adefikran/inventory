@@ -111,12 +111,12 @@
                                                     ?>
                                                     <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>" method="post">
                                                         <label for="deliver_action">Action Pesanan</label>
-                                                        <select name="deliver_action" id="deliver_action" class="form-control deliver_action">
+                                                        <select name="deliver_action" id="deliver_action" class="form-control deliver_action" style="width: 200px">
                                                             <option value="DELIVERY">Deliver</option>
                                                             <option value="REJECT">Reject</option>
                                                         </select>
                                                         <label for="deliver_kurir">Nama Kurir</label>
-                                                        <select name="deliver_kurir" id="deliver_action" class="form-control deliver_kurir">
+                                                        <select name="deliver_kurir" id="deliver_action" class="form-control deliver_kurir" style="width: 200px">
                                                             <?php
                                                             $sqlDelivery = "SELECT * FROM m_deliver";
                                                             $resultDelivery = pg_query($sqlDelivery);
