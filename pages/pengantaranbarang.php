@@ -88,7 +88,7 @@
                                         <th>Tanggal Buat</th>
                                         <th>Detail</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Action Pesanan</th>
                                     </tr>
 
                                     <?php
