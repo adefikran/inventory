@@ -123,7 +123,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row[5]; ?></td>
+                                            <td><?php echo $row[6]; ?></td>
                                             <td>
                                                 <?php
                                                 if ($row[6] == 'PENDING') {
