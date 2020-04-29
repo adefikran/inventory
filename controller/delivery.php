@@ -13,14 +13,19 @@
         $resultUpdate = pg_query($sql);
 
         if ($resultUpdate) {
-            $sql = "INSERT INTO t_delivery (transaction_id, created, updated, status, deliver_id, note) VALUES ($order, now(), now(), '$deliveryAction', '$deliveryKurir', '')";
-            $result = pg_query($sql);
+            if ($deliveryAction == "DELIVERY") {
+                $sql = "INSERT INTO t_delivery (transaction_id, created, updated, status, deliver_id, note) VALUES ($order, now(), now(), '$deliveryAction', '$deliveryKurir', '')";
+                $result = pg_query($sql);
 
-            if ($result) {
-                echo '<script>alert("Pesanan berhasil di perbaharui menjadi ' . $deliveryAction . '")</script>';
-                echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+                if ($result) {
+                    echo '<script>alert("Pesanan berhasil di perbaharui menjadi ' . $deliveryAction . '")</script>';
+                    echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+                } else {
+                    echo '<script>alert("Gagal melakukan pengaturan pengantaran")</script>';
+                    echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+                }
             } else {
-                echo '<script>alert("Gagal melakukan pengaturan pengantaran")</script>';
+                echo '<script>alert("Pesanan berhasil di perbaharui menjadi ' . $deliveryAction . '")</script>';
                 echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
             }
         } else {
