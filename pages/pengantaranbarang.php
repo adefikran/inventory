@@ -84,7 +84,7 @@
                                 <table class="table table-hover">
                                     <tr>
                                         <th>Penginput</th>
-                                        <th>Action</th>
+                                        <th>Action Pesanan</th>
                                         <th>Alamat Pengantaran</th>
                                         <th>Tanggal Buat</th>
                                         <th>Detail</th>
@@ -110,12 +110,12 @@
                                                 if ($row[6] == 'PENDING') {
                                                     ?>
                                                     <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>" method="post">
-                                                        <label for="deliver_action">Action</label>
+                                                        <label for="deliver_action">Action Pesanan</label>
                                                         <select name="deliver_action" id="deliver_action" class="form-control deliver_action">
                                                             <option value="DELIVERY">Deliver</option>
                                                             <option value="REJECT">Reject</option>
                                                         </select>
-                                                        <label for="deliver_kurir">Kurir</label>
+                                                        <label for="deliver_kurir">Nama Kurir</label>
                                                         <select name="deliver_kurir" id="deliver_action" class="form-control deliver_kurir">
                                                             <?php
                                                             $sqlDelivery = "SELECT * FROM m_deliver";
