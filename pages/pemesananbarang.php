@@ -172,7 +172,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row[5]; ?></td>
+                                            <td><?php echo $row[6]; ?></td>
                                         </tr>
                                         <?php
                                     }
