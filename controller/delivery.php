@@ -25,6 +25,13 @@
                     echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
                 }
             } else {
+                $sql = "SELECT * FROM t_transaction_detail WHERE transaction_id = $order";
+                $result = pg_query($sql);
+                while ($row = pg_fetch_row($result)) {
+                    $sql = "UPDATE m_barang SET stock = stock + $row[3] WHERE id = $row[2]";
+                    $result = pg_query($sql);
+                }
+
                 echo '<script>alert("Pesanan berhasil di perbaharui menjadi ' . $deliveryAction . '")</script>';
                 echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
             }
