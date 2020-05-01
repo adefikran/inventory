@@ -33,7 +33,24 @@
             echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
         }
     } else if ($action == 2) {
+        $sql = "UPDATE t_transaction SET status = 'DELIVERED', updated = now() WHERE id = $order";
+        $resultUpdate = pg_query($sql);
 
+        if ($resultUpdate) {
+            $sql = "UPDATE t_delivery SET updated = now(), status = 'DELIVERED' WHERE transaction_id = $order";
+            $result = pg_query($sql);
+
+            if ($result) {
+                echo '<script>alert("Pesanan berhasil di perbaharui menjadi DELIVERED")</script>';
+                echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+            } else {
+                echo '<script>alert("Gagal melakukan pengaturan pengantaran")</script>';
+                echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+            }
+        } else {
+            echo '<script>alert("Gagal mengubah status pesanan")</script>';
+            echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+        }
     }
 
     pg_close();
