@@ -76,7 +76,15 @@
             </h1>
         </section>
         <section class="content">
-
+            <form action="../controller/productreport.php?nip=<?php echo $_GET['nip']; ?>" method="post">
+                <label for="from">Dari : </label>
+                <input type="date" id="from" name="from">
+                <br/>
+                <label for="to">Sampai : </label>
+                <input type="date" id="to" name="to">
+                <br/>
+                <input type="submit" name="submit" class="btn btn-info" value="Unduh Laporan" />
+            </form>
         </section>
     </div>
 
@@ -91,6 +99,25 @@
 </div>
 
 
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '-' + dd + '-' + yyyy;
+
+    $('#from').attr('value', today);
+    $('#to').attr('value', today);
+</script>
 
 <script src="../style/css/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../style/css/bower_components/jquery-ui/jquery-ui.min.js"></script>
