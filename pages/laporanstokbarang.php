@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="../style/css/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -78,10 +82,13 @@
         <section class="content">
             <form action="../controller/productreport.php?nip=<?php echo $_GET['nip']; ?>" method="post">
                 <label for="from">Dari : </label>
-                <input type="date" id="from" name="from">
+                <input type="date" id="from" name="from" data-date-format="YYYY-MM-DD">
+                <br/>
                 <br/>
                 <label for="to">Sampai : </label>
-                <input type="date" id="to" name="to">
+                <input type="date" id="to" name="to" data-date-format="YYYY-MM-DD">
+                <br/>
+                <br/>
                 <br/>
                 <input type="submit" name="submit" class="btn btn-info" value="Unduh Laporan" />
             </form>
@@ -142,3 +149,7 @@
 <script src="../style/css/dist/js/demo.js"></script>
 </body>
 </html>
+<script>
+    $('#from').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
+    $('#to').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
+</script>
