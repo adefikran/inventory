@@ -82,11 +82,11 @@
         <section class="content">
             <form action="../controller/productreport.php?nip=<?php echo $_GET['nip']; ?>" method="post">
                 <label for="from">Dari : </label>
-                <input type="date" id="from" name="from" data-date-format="YYYY-MM-DD">
+                <input type="date" id="from" name="from">
                 <br/>
                 <br/>
                 <label for="to">Sampai : </label>
-                <input type="date" id="to" name="to" data-date-format="YYYY-MM-DD">
+                <input type="date" id="to" name="to">
                 <br/>
                 <br/>
                 <br/>
@@ -104,27 +104,6 @@
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>
-
-
-<script>
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd
-    }
-
-    if (mm < 10) {
-        mm = '0' + mm
-    }
-
-    today = mm + '-' + dd + '-' + yyyy;
-
-    $('#from').attr('value', today);
-    $('#to').attr('value', today);
-</script>
 
 <script src="../style/css/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../style/css/bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -150,6 +129,24 @@
 </body>
 </html>
 <script>
-    $('#from').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
-    $('#to').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + dd + '-' + mm;
+
+    document.getElementById("from").value = today;
+    document.getElementById("to").value = today;
+
+//    $('#from').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
+//    $('#to').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
 </script>
