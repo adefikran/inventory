@@ -47,9 +47,6 @@ header("Content-Disposition: attachment; filename=Data Barang.xls");
     <?php
     include "../controller/connection.php";
 
-    header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=Data Barang.xlsx");
-
     $from = $_POST['from'];
     $to = $_POST['to'];
 
