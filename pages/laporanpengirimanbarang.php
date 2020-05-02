@@ -76,7 +76,7 @@
             </h1>
         </section>
         <section class="content">
-            <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>" method="post">
+            <form action="../controller/deliveryreport.php?nip=<?php echo $_GET['nip']; ?>" method="post">
                 <label for="from">Dari : </label>
                 <input type="date" id="from" name="from">
                 <br/>
