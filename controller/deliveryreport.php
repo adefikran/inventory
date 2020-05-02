@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Export Data Barang</title>
+    <title>Export Data Pengiriman</title>
 </head>
 <body>
 <style type="text/css">
@@ -32,17 +32,17 @@ header("Content-Disposition: attachment; filename=Data Barang.xls");
 ?>
 
 <center>
-    <h1>Data Barang</h1>
+    <h1>Data Pengiriman</h1>
 </center>
 
 <table border="1">
     <tr>
-        <th>Nama</th>
-        <th>Stok</th>
+        <th>ID Pesanan</th>
         <th>Tanggal Buat</th>
-        <th>Penginput</th>
         <th>Tanggal Perbaharui</th>
-        <th>Pembaharui</th>
+        <th>Status</th>
+        <th>Catatan</th>
+        <th>Kurir</th>
     </tr>
     <?php
     include "../controller/connection.php";
@@ -50,25 +50,22 @@ header("Content-Disposition: attachment; filename=Data Barang.xls");
     $from = $_POST['from'];
     $to = $_POST['to'];
 
-    $sql = "SELECT * FROM m_barang WHERE updated::date BETWEEN '$from'::date AND '$to'::date";
+    $sql = "SELECT * FROM t_delivery WHERE updated::date BETWEEN '$from'::date AND '$to'::date";
     $result = pg_query($sql);
 
     while ($row = pg_fetch_row($result)) {
-        $entrySql = "SELECT * FROM m_user WHERE nip = '$row[4]'";
-        $entry = pg_query($entrySql);
-        $rowEntry = pg_fetch_row($entry);
+        $entryKurir = "SELECT * FROM m_deliver WHERE nip = '$row[6]'";
+        $entry = pg_query($entryKurir);
+        $rowKurir = pg_fetch_row($entry);
 
-        $entryUpdate = "SELECT * FROM m_user WHERE nip = '$row[6]'";
-        $entryUpdate = pg_query($entryUpdate);
-        $rowUpdate = pg_fetch_row($entryUpdate);
         ?>
         <tr>
             <td><?php echo $row[1]; ?></td>
             <td><?php echo $row[2]; ?></td>
             <td><?php echo $row[3]; ?></td>
-            <td><?php echo $row[4] . " - " . $rowEntry[1]; ?></td>
+            <td><?php echo $row[4]; ?></td>
             <td><?php echo $row[5]; ?></td>
-            <td><?php echo $row[6] . " - " . $rowUpdate[1]; ?></td>
+            <td><?php echo $row[6] . " - " . $rowKurir[1]; ?></td>
         </tr>
         <?php
     }
