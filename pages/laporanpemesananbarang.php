@@ -140,7 +140,7 @@
         mm = '0' + mm
     }
 
-    today = yyyy + '-' + dd + '-' + mm;
+    today = yyyy + '-' + mm + '-' + dd;
 
     document.getElementById("from").value = today;
     document.getElementById("to").value = today;
