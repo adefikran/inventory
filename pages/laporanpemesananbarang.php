@@ -76,7 +76,18 @@
             </h1>
         </section>
         <section class="content">
-
+            <form action="../controller/transactionreport.php?nip=<?php echo $_GET['nip']; ?>" method="post">
+                <label for="from">Dari : </label>
+                <input type="date" id="from" name="from">
+                <br/>
+                <br/>
+                <label for="to">Sampai : </label>
+                <input type="date" id="to" name="to">
+                <br/>
+                <br/>
+                <br/>
+                <input type="submit" name="submit" class="btn btn-info" value="Unduh Laporan" />
+            </form>
         </section>
     </div>
 
@@ -115,3 +126,25 @@
 <script src="../style/css/dist/js/demo.js"></script>
 </body>
 </html>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + dd + '-' + mm;
+
+    document.getElementById("from").value = today;
+    document.getElementById("to").value = today;
+
+    //    $('#from').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
+    //    $('#to').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
+</script>
