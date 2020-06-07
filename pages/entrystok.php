@@ -146,6 +146,10 @@
                                             $entry = pg_query($entrySql);
                                             $rowEntry = pg_fetch_row($entry);
 
+                                            $entrySql2 = "SELECT * FROM m_user WHERE nip = '$row[6]'";
+                                            $entry2 = pg_query($entrySql2);
+                                            $rowEntry2 = pg_fetch_row($entry2);
+
                                             ?>
                                             <tr>
                                                 <td><?php echo $row[1]; ?></td>
@@ -153,7 +157,7 @@
                                                 <td><?php echo $row[3]; ?></td>
                                                 <td><?php echo $rowEntry[1]; ?></td>
                                                 <td><?php echo $row[5]; ?></td>
-                                                <td><?php echo $row[6]; ?></td>
+                                                <td><?php echo $rowEntry2[1]; ?></td>
                                                 <td>
                                                     <a href="entrystok.php?nip=<?php echo $_GET['nip']; ?>&update=<?php echo $row[0]; ?>&name=<?php echo $row[1]; ?>&stock=<?php echo $row[2]; ?>">Perbaharui</a>
                                                     &nbsp;&nbsp;
