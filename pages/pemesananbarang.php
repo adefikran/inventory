@@ -162,7 +162,7 @@
                                                 $resultTransaction = pg_query($sqlTransaction);
 
                                                 while ($rowTransaction = pg_fetch_row($resultTransaction)) {
-                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[1]";
+                                                    $sqlBarang = "SELECT * FROM m_barang where id = $rowTransaction[2]";
                                                     $resultBarang = pg_query($sqlBarang);
                                                     $rowBarang = pg_fetch_row($resultBarang);
 
