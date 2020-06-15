@@ -141,12 +141,12 @@
                                                             <option value="REJECT">Reject</option>
                                                         </select>
                                                         <br/>
-<!--                                                        <div id="ifYes" style="display: none;">-->
+                                                        <div id="ifYes" style="display: none;">
                                                             <label for="reject_reason">Alasan Reject</label>
                                                             <input type="text" name="reject_reason" id="reject_reason" class="form-control reject_reason" />
-<!--                                                        </div>-->
+                                                        </div>
                                                         <br/>
-                                                        <input type="submit" name="submit" value="OK" /
+                                                        <input type="submit" name="submit" value="OK" />
                                                     </form>
                                                     <?php
                                                 } else if ($row[5] == 'DELIVERED'){
