@@ -40,23 +40,47 @@
             echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
         }
     } else if ($action == 2) {
-        $sql = "UPDATE t_transaction SET status = 'DELIVERED', updated = now() WHERE id = $order";
-        $resultUpdate = pg_query($sql);
+        $deliveryAction = $_POST["deliver_action"];
+        $rejectReason= $_POST["reject_reason"];
 
-        if ($resultUpdate) {
-            $sql = "UPDATE t_delivery SET updated = now(), status = 'DELIVERED' WHERE transaction_id = $order";
-            $result = pg_query($sql);
+        if ($deliveryAction == "DELIVERED") {
+            $sql = "UPDATE t_transaction SET status = 'DELIVERED', updated = now() WHERE id = $order";
+            $resultUpdate = pg_query($sql);
 
-            if ($result) {
-                echo '<script>alert("Pesanan berhasil di perbaharui menjadi DELIVERED")</script>';
-                echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+            if ($resultUpdate) {
+                $sql = "UPDATE t_delivery SET updated = now(), status = 'DELIVERED' WHERE transaction_id = $order";
+                $result = pg_query($sql);
+
+                if ($result) {
+                    echo '<script>alert("Pesanan berhasil di perbaharui menjadi DELIVERED")</script>';
+                    echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+                } else {
+                    echo '<script>alert("Gagal melakukan pengaturan pengantaran")</script>';
+                    echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+                }
             } else {
-                echo '<script>alert("Gagal melakukan pengaturan pengantaran")</script>';
+                echo '<script>alert("Gagal mengubah status pesanan")</script>';
                 echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
             }
         } else {
-            echo '<script>alert("Gagal mengubah status pesanan")</script>';
-            echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+            $sql = "UPDATE t_transaction SET status = 'REJECT', reject_reason = '$rejectReason', updated = now() WHERE id = $order";
+            $resultUpdate = pg_query($sql);
+
+            if ($resultUpdate) {
+                $sql = "UPDATE t_delivery SET updated = now(), status = 'REJECT', note = '$rejectReason' WHERE transaction_id = $order";
+                $result = pg_query($sql);
+
+                if ($result) {
+                    echo '<script>alert("Pesanan berhasil di perbaharui menjadi REJECT dengan Alasan ' . $rejectReason . '")</script>';
+                    echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+                } else {
+                    echo '<script>alert("Gagal melakukan pengaturan pengantaran")</script>';
+                    echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+                }
+            } else {
+                echo '<script>alert("Gagal mengubah status pesanan")</script>';
+                echo '<script>window.location = "../pages/pengantaranbarang.php?nip=' . $nip . '";</script>';
+            }
         }
     }
 

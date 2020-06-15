@@ -134,7 +134,20 @@
                                                     <?php
                                                 } else if ($row[5] == 'DELIVERY') {
                                                     ?>
-                                                    <a href="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&action=2&order=<?php echo $row[0]; ?>">Delivered</a>
+                                                    <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&action=2&order=<?php echo $row[0]; ?>" method="post">
+                                                        <label for="deliver_action">Action Pesanan</label>
+                                                        <select onchange="checkTransaction(this);" name="deliver_action" id="deliver_action" class="form-control deliver_action" style="width: 120px">
+                                                            <option value="DELIVERED">Delivered</option>
+                                                            <option value="REJECT">Reject</option>
+                                                        </select>
+                                                        <br/>
+                                                        <div id="ifYes" style="display: none;">
+                                                            <label for="reject_reason">Alasan Reject</label>
+                                                            <input type="text" name="reject_reason" id="reject_reason" class="form-control reject_reason" />
+                                                        </div>
+                                                        <br/>
+                                                        <input type="submit" name="submit" value="OK" /
+                                                    </form>
                                                     <?php
                                                 } else if ($row[5] == 'DELIVERED'){
                                                     ?>
@@ -142,7 +155,7 @@
                                                     <?php
                                                 } else if ($row[5] == 'REJECT'){
                                                     ?>
-                                                    <label>Pesanan Ditolak</label>
+                                                    <label>Pesanan Ditolak -> <?php echo $row[6] ?></label>
                                                     <?php
                                                 }
                                                 ?>
@@ -191,7 +204,16 @@
     <div class="control-sidebar-bg"></div>
 </div>
 
-
+<script>
+    function checkTransaction(that) {
+        if (that.value == "other") {
+            alert("check");
+            document.getElementById("ifYes").style.display = "block";
+        } else {
+            document.getElementById("ifYes").style.display = "none";
+        }
+    }
+</script>
 
 <script src="../style/css/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../style/css/bower_components/jquery-ui/jquery-ui.min.js"></script>

@@ -172,7 +172,14 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row[5]; ?></td>
+                                            <td><?php
+                                                if (!empty($row[6])) {
+                                                    echo $row[5] . ' -> ' . $row[6];
+                                                } else {
+                                                    echo $row[5];
+                                                }
+                                                ?>
+                                            </td>
                                         </tr>
                                         <?php
                                     }
