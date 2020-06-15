@@ -206,8 +206,7 @@
 
 <script>
     function checkTransaction(that) {
-        if (that.value == "other") {
-            alert("check");
+        if (that.value == "REJECT") {
             document.getElementById("ifYes").style.display = "block";
         } else {
             document.getElementById("ifYes").style.display = "none";
