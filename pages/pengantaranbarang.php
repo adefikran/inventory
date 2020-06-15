@@ -210,6 +210,7 @@
             document.getElementById("ifYes").style.display = "block";
         } else {
             document.getElementById("ifYes").style.display = "none";
+            document.getElementById("reject_reason").value = "";
         }
     }
 </script>
