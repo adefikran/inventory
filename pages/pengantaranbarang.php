@@ -136,7 +136,7 @@
                                                     ?>
                                                     <form action="../controller/delivery.php?nip=<?php echo $_GET['nip']; ?>&action=2&order=<?php echo $row[0]; ?>" method="post">
                                                         <label for="deliver_action">Action Pesanan</label>
-                                                        <select name="deliver_action" id="deliver_action" class="form-control deliver_action" style="width: 120px">
+                                                        <select onchange="checkTransaction(this)" name="deliver_action" id="deliver_action" class="form-control deliver_action" style="width: 120px">
                                                             <option value="DELIVERED">Delivered</option>
                                                             <option value="REJECT">Reject</option>
                                                         </select>
